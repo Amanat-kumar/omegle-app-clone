@@ -1,0 +1,9 @@
+<div class="home-container">
+    <h1>Welcome, {{username || 'Guest'}}</h1>
+    <p class="subtitle">Ready to meet someone new?</p>
+
+    <div class="actions">
+        <button (click)="startVideoChat()">Start Video Chat</button>
+        <button class="logout" (click)="logout()"></button>
+    </div>
+</div>

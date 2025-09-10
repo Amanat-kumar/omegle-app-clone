@@ -1,0 +1,49 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #555;
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+
+    button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:first-child {
+        background-color: #4caf50;
+        color: white;
+
+        &:hover {
+          background-color: #45a049;
+        }
+      }
+
+      &.logout {
+        background-color: #e74c3c;
+        color: white;
+
+        &:hover {
+          background-color: #c0392b;
+        }
+      }
+    }
+  }
+}

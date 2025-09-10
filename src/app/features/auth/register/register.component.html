@@ -1,0 +1,23 @@
+<div class="register-container">
+  <h2>Create Account</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Username : </label>
+      <input type="text" formControlName="username" />
+    </div>
+
+    <div>
+      <label>Email :</label>
+      <input type="email" formControlName="email" />
+    </div>
+
+    <div>
+      <label>Password : </label>
+      <input type="password" formControlName="password" />
+    </div>
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  </form>
+  <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+
+  <button> <a routerLink="/login">Login</a></button>
+</div>
