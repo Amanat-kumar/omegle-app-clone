@@ -1,0 +1,10 @@
+<div class="video-chat-container" *ngIf="!inCall">
+  <button (click)="startChat()">Start Random Chat</button>
+</div>
+
+<div class="video-chat-container" *ngIf="inCall">
+  <app-video-player [stream]="localStream" muted></app-video-player>
+  <app-video-player [stream]="remoteStream"></app-video-player>
+
+  <button class="end-call" (click)="endChat()">End Call</button>
+</div>

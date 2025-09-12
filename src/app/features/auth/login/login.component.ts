@@ -24,9 +24,7 @@ export class LoginComponent {
         password: ['', [Validators.required, Validators.minLength(8)]]
     });
 
-    onSubmit() {
-        console.log("onSubmit login");
-        
+    onSubmit() { 
         if (this.form.invalid) return;
         const credentials = this.form.getRawValue() as { username: string; password: string };
         this.authService.login(credentials).subscribe({

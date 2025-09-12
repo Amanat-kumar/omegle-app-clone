@@ -5,6 +5,8 @@ export interface LoginRequest {
 
 export interface LoginResponse {
     token: string;
-    expiresIn: number;
+    issueAt: Date
+    expiresIn: Date;
     userId: string;
+
 }
