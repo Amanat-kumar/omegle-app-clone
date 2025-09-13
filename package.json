@@ -28,6 +28,7 @@
     "@angular/forms": "^20.2.0",
     "@angular/platform-browser": "^20.2.0",
     "@angular/router": "^20.2.0",
+    "@stomp/stompjs": "^7.1.1",
     "rxjs": "~7.8.0",
     "sockjs-client": "^1.6.1",
     "stompjs": "^2.3.3",
@@ -46,6 +47,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "node-libs-browser": "^2.2.1",
     "typescript": "~5.9.2"
   }
 }

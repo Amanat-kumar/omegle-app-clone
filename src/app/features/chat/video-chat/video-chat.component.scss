@@ -1,0 +1,8 @@
+.vc { display: grid; gap: 1rem; }
+.videos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  min-height: 60vh;
+}
+.controls { display: flex; gap: .5rem; align-items: center; }

@@ -1,10 +1,22 @@
-<div class="video-chat-container" *ngIf="!inCall">
-  <button (click)="startChat()">Start Random Chat</button>
-</div>
+<div class="vc">
+  <div class="videos">
+    <app-video-player [stream]="localStream$ | async" [muted]="true"></app-video-player>
+    <app-video-player [stream]="remoteStream$ | async"></app-video-player>
+  </div>
 
-<div class="video-chat-container" *ngIf="inCall">
-  <app-video-player [stream]="localStream" muted></app-video-player>
-  <app-video-player [stream]="remoteStream"></app-video-player>
+  <div class="controls">
+    <button (click)="startRandom()" [disabled]="connecting">Start</button>
+    <button (click)="nextPartner()">Next</button>
+    <button (click)="toggleMic()">{{ micOn ? 'Mute' : 'Unmute' }}</button>
+    <button (click)="toggleCam()">{{ camOn ? 'Camera Off' : 'Camera On' }}</button>
+    <button (click)="endSession(true)">End</button>
+  </div>
 
-  <button class="end-call" (click)="endChat()">End Call</button>
+  <!-- Optional: lightweight text chat -->
+  <!--
+  <div class="text-chat">
+    <div class="messages">...</div>
+    <input type="text" placeholder="Type..." (keyup.enter)="sendText($event.target.value); $event.target.value='';">
+  </div>
+  -->
 </div>

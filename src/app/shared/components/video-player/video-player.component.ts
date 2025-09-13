@@ -1,23 +1,19 @@
-import { Component, Input, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-video-player',
   templateUrl: './video-player.component.html',
-  styleUrls: ['./video-player.component.scss'],
-  standalone: true
+  styleUrls: ['./video-player.component.scss']
 })
-export class VideoPlayerComponent implements AfterViewInit {
-  @Input() stream?: MediaStream;
+export class VideoPlayerComponent implements OnChanges {
+  @Input() stream?: MediaStream | null;
   @Input() muted = false;
 
-  constructor(private el: ElementRef) {}
+  @ViewChild('vid', { static: true }) vidRef!: ElementRef<HTMLVideoElement>;
 
-  ngAfterViewInit() {
-    const video: HTMLVideoElement = this.el.nativeElement.querySelector('video');
-    if (video && this.stream) {
-      video.srcObject = this.stream;
-      video.muted = this.muted;
-      video.play();
+  ngOnChanges() {
+    if (this.vidRef && this.stream) {
+      this.vidRef.nativeElement.srcObject = this.stream;
     }
   }
 }
