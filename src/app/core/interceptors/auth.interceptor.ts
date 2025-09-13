@@ -7,6 +7,8 @@ export const authInterceptor: HttpInterceptorFn = (
     req: HttpRequest<any>,
     next: HttpHandlerFn
 ): Observable<HttpEvent<any>> => {
+    console.log("interceptor:::::::::::");
+    
     const router = inject(Router);
     const token = localStorage.getItem('token');
 

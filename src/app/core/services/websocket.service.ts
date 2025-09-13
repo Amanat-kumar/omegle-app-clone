@@ -8,7 +8,9 @@ import { environment } from '../../shared/components/video-player/environments/e
 export class WebsocketService {
   private client!: Client;
   private connected = false;
-  private readonly url = environment.signalingUrl; // e.g. http://localhost:8080/ws
+  // private readonly url = environment.signalingUrl; // e.g. http://localhost:8080/ws
+
+  private readonly url = '/ws' 
 
   // for global connection status notifications
   private connectionState$ = new Subject<boolean>();
@@ -31,7 +33,7 @@ export class WebsocketService {
       connectHeaders: {},
       debug: (str) => {
         // optional: enable for debugging
-        // console.debug('[STOMP]', str);
+        console.debug('[STOMP]', str);
       },
       reconnectDelay: 2000,
       heartbeatIncoming: 4000,

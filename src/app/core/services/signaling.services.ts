@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WebsocketService } from './websocket.service';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { SignalPayload, SignalType } from '../models/signal-message-model';
 
 @Injectable({ providedIn: 'root' })
@@ -15,22 +15,25 @@ export class SignalingService {
 
         try {
             // Ensure WebSocket connection is established
-            await this.ws.connect();
-
-            // Subscribe to the signaling channel and process the message as SignalPayload
-            this.ws.subscribe<SignalPayload>(`signal_${sessionId}`, `/topic/signal/${sessionId}`).subscribe({
-                next: (payload: SignalPayload) => {
-                    this.signal$.next(payload); // This is a correctly typed SignalPayload
-                },
-                error: (err) => {
-                    console.error('Error in WebSocket subscription:', err);
-                }
-            });
+            const connectionStatus$ = await this.ws.connect().toPromise();
+            
+            // Check if the connection is successful
+            if (connectionStatus$) {
+                console.log('WebSocket connection established');
+                // Proceed to subscribe to the signaling channel after the WebSocket connection is established
+                this.ws.subscribe<SignalPayload>(`signal_${sessionId}`, `/topic/signal/${sessionId}`).subscribe({
+                    next: (payload: SignalPayload) => {
+                        this.signal$.next(payload); // This is a correctly typed SignalPayload
+                    },
+                    error: (err) => {
+                        console.error('Error in WebSocket subscription:', err);
+                    }
+                });
+            }
         } catch (error) {
             console.error('Error joining session:', error);
         }
     }
-
 
     signals$() { return this.signal$.asObservable(); }
 
