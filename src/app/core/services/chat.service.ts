@@ -9,7 +9,12 @@ export class ChatService {
 
   constructor(private http: HttpClient) {}
 
-  startRandom() { return this.http.post<ChatSession>(`${this.base}/start`, {}); }
+  startRandom() { 
+    const userId = localStorage.getItem('userId');
+    console.log("startRandom ::::::::", userId);
+    
+    return this.http.post<ChatSession>(`${this.base}/start?userId=${userId}`, {}); 
+  }
   getActive() { return this.http.get<ChatSession[]>(`${this.base}/active`); }
   getById(id: number) { return this.http.get<ChatSession>(`${this.base}/${id}`); }
 }
